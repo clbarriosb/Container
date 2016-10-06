@@ -54,10 +54,35 @@ public class ContainerHistory {
         }
 
     }
-
+    
+    public double greatestFluctuation() {
+        double maxFluctuation = 0;
+        ArrayList<Double> maxFluctuate = new ArrayList<>();
+        if (this.object.isEmpty() || this.object.size() == 1) {
+            return maxFluctuation;
+        } 
+        else {
+            for (int i = 0; i < this.object.size(); i++) {
+                if (i != this.object.size() - 1) {
+                    double firstNumber = this.object.get(i);
+                    double secondNumber = this.object.get(i + 1);
+                    maxFluctuation = secondNumber - firstNumber;
+                    maxFluctuate.add(Math.abs(maxFluctuation));
+                }  else {
+                   double firstNumber = this.object.get(i - 1);
+                    double secondNumber = this.object.get(i);
+                    maxFluctuation = secondNumber - firstNumber;
+                    maxFluctuate.add(Math.abs(maxFluctuation));
+                }
+            }
+        }
+        return Math.abs(Collections.max(maxFluctuate));
+    }
+    
+    /*
     public double greatestFluctuation() {
        return maxValue() - Math.abs(minValue());
-    }
+    }*/
     
     public double variance () {
         double variance = 0;
